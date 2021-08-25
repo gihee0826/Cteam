@@ -21,7 +21,7 @@ i{
     width: auto;
     height: 120px;
     border: none;
-    font-size: 28px;
+    font-size:60px;
     background-color: #dad8ec;
     text-align: center;
     border-radius: 4px;
@@ -81,7 +81,8 @@ hr{
 }
 .user{
     margin-left: 20px;
-    height:50px;
+    height:40px;
+    margin-top:10px;
     
 }
 .writeBtn{
@@ -95,12 +96,12 @@ hr{
     border: 0;
     outline: 0;
     position: relative;
-    margin-left: 560px;
+    margin-left: 460px;
     margin-right: 20px;
 }
 .search{
     background-color: #f4d4d4;
-    width: 300px;
+    width: 400px;
     height: 35px;
     border: none;
     border-radius: 4px;
@@ -157,4 +158,11 @@ hr{
     height: 30px;
     text-align: center;
     color: rgb(85, 83, 83);
+}
+.searchS{
+	background-color: #f4d4d4;
+	border:none;
+}
+.searchS:focus{
+	outline: none;
 }
