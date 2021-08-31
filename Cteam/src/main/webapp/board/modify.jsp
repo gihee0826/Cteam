@@ -76,6 +76,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- <script>
+		function outfn(){
+			alert("글 수정을 하지않고 나가시겠습니까?")
+			if(login != 'null'){
+				location.href="board/write.jsp";
+			}else{
+				alert("접근권한이 없습니다.");
+			}
+		}
+	</script>
+	-->
     <style>
         .boardName{
             font-size: 14px;
@@ -212,6 +223,12 @@
             text-align: center;
             color: rgb(85, 83, 83);
         }
+        .footerC{
+			width:80px;
+			height:30px;
+			text-align:center;
+			margin:0 auto;
+		}
     </style>
 </head>
 <body>
@@ -228,16 +245,16 @@
         </div>
         <header class="head">
             <i class="fas fa-paw"></i>
-            <a href="#" class="title">나만 없어 고양이</a>
+            <a href="../index.jsp" class="title">나만 없어 고양이</a>
         </header>
         <nav class="menuBar">
             <ul class="menu">
-                <li><a href="#">공지사항</a></li>
-                <li><a href="board/totalList.jsp">전체 게시글</a></li>
-                <li><a href="#">안냥</a></li>
-                <li><a href="#">궁굼하다냥</a></li>
-                <li><a href="#">냥품생활</a></li>
-                <li><a href="#">고영희씨 사진첩</a></li>
+                <li><a href="noticeList.jsp">공지사항</a></li>
+                <li><a href="totalList.jsp">전체 게시글</a></li>
+                <li><a href="helloList.jsp">안냥</a></li>
+                <li><a href="whyList.jsp">궁굼하다냥</a></li>
+                <li><a href="buyList.jsp">냥품생활</a></li>
+                <li><a href="photoList.jsp">고영희씨 사진첩</a></li>
             </ul>
         </nav>
         <section >
@@ -285,10 +302,11 @@
                 	<input type="submit" value="등록">
                 </div>
                 <hr>
-            
-          
-                
- 
+				<footer>
+					<div class="footerC">
+					&copy;TeamC
+					</div>
+				</footer>
             </div>
         </section>
     </div>

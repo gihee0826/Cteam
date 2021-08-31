@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="project1.loginUser" %>
+<%@ page import = "com.oreilly.servlet.*" %>
+<%@ page import = "com.oreilly.servlet.multipart.*" %>
 <%
 	loginUser loginUser = (loginUser)session.getAttribute("loginUser");
 %> 
@@ -152,9 +154,40 @@
             text-align: center;
             color: rgb(85, 83, 83);
         }
+        .m4,
+        .m5,
+        .m6{
+        	margin-top:10px;
+        	margin-left:30px;
+        }
+        .footerC{
+			width:80px;
+			height:30px;
+			text-align:center;
+			margin:0 auto;
+		}
     </style>
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script>
+   	    	$(document).ready(function(e){
+   	    		var regex =  new RegExp("(.*?)\.(jpg|png|gif)$");
+   	    		var maxSize = 5242888;
+   	    		
+   	    		function checkExtension(fileName, fileSize){
+   	    			if(fileSize > maxSize){
+   	    				alert("파일크기 초과");
+   	    				return false;
+   	    			}
+   	    			if(regex.test(fileName)){
+   	    				alert("그림파일(jpg,png,gif)만 첨부하세요.");
+   	    				return false;
+   	    			}
+   	    		}
+   	    	});
+   	    </script>
 </head>
 <body>
+	<form action="writeOk.jsp" method="post">
     <div class="mainBox">
         <div class="user bar">
             <%if(loginUser == null){ %>
@@ -166,16 +199,16 @@
         </div>
         <header class="head">
             <i class="fas fa-paw"></i>
-            <a href="#" class="title">나만 없어 고양이</a>
+            <a href="../index.jsp" class="title">나만 없어 고양이</a>
         </header>
         <nav class="menuBar">
             <ul class="menu">
-                <li><a href="#">공지사항</a></li>
-                <li><a href="board/totalList.jsp">전체 게시글</a></li>
-                <li><a href="#">안냥</a></li>
-                <li><a href="#">궁굼하다냥</a></li>
-                <li><a href="#">냥품생활</a></li>
-                <li><a href="#">고영희씨 사진첩</a></li>
+                <li><a href="noticeList.jsp">공지사항</a></li>
+                <li><a href="totalList.jsp">전체 게시글</a></li>
+                <li><a href="helloList.jsp">안냥</a></li>
+                <li><a href="whyList.jsp">궁굼하다냥</a></li>
+                <li><a href="buyList.jsp">냥품생활</a></li>
+                <li><a href="photoList.jsp">고영희씨 사진첩</a></li>
             </ul>
         </nav>
         <section >
@@ -203,29 +236,44 @@
             </div>
             <div class="body">
                 <div class="m1">
-                    <select name="board" class="board">
-                        <option value="1" slected>게시판 선택</option>
-                        <option value="2">안냥</option>
-                        <option value="3">궁금하다냥</option>
-                        <option value="4">냥품생활</option>
-                        <option value="5">고영희씨 사진첩</option>
+                    <select class="board" name="category">
+                        <option value="안냥">안냥</option>
+                        <option value="궁금하다냥">궁금하다냥</option>
+                        <option value="냥품생활">냥품생활</option>
+                        <option value="고영희씨 사진첩">고영희씨 사진첩</option>
                     </select>
                 </div>
                 <div class="m2">
-                    <input type="text" class="m22"placeholder="제목" onfocus="this.placeholder=''" onblur="this.placeholder='제목'"> 
+                    <input type="text" name="title" class="m22"placeholder="제목" onfocus="this.placeholder=''" onblur="this.placeholder='제목'"> 
                 </div>
                 <div class="m3">
-                    <textarea name="" id="m3" cols="100" rows="30"></textarea>
+                    <textarea name="content" id="m3" cols="100" rows="30"></textarea>
                 </div>
                 <div class="m4">
-                    <input type="file" class="m42"name="fileName">
+                    <input type="file" name="uploadFile1" class="commentText" size=120 maxlength=500">
                 </div>
+                <div class="m5">
+		            <input type="file" name="uploadFile2" class="commentText" size=120 maxlength=500">
+		        </div>
+		        <div class="m6">
+		            <input type="file" name="uploadFile3" class="commentText" size=120 maxlength=500">
+                </div>
+                <div class="uploadResult">
+		             <ul>
+		             </ul>
+		        </div>
                 <div>
                 	<input type="submit" value="등록">
                 </div>
                 <hr>
+				<footer>
+					<div class="footerC">
+					&copy;TeamC
+					</div>
+				</footer>
             
             </div>
         </section>
     </div>
+    </form>
 </body>

@@ -47,6 +47,7 @@
 		   		totalSql += " and m.mname = '"+searchValue+"'";
 		   	}
 	   }
+	   totalSql +=" and b.bcategory = '공지사항'";
 	   
 	psmt = conn.prepareStatement(totalSql);
 	rs = psmt.executeQuery();
@@ -68,21 +69,22 @@
 	rs = null;
 	
 	String sql = "";  
-		   sql +="select B.* from ";
-	       sql +=" (select rownum as rnum, A.* from ";
-		   sql +=" (select m.mname,b.bno,b.btitle,";
-		   sql +="to_char(b.bdate,'yyyy-mm-dd') as bdate,bcategory ";
-		   sql +=" from board b ,mem m";
-		   sql +=" where b.mno = m.mno";
-		   if(searchValue != null && !searchValue.equals("")){
-			   	if(searchType.equals("title")){
-			   		sql +=" and b.btitle like '%"+searchValue+"%'";
-			   		sql +=" or b.bcontent like '%"+searchValue+"%'";
-			   	}else if(searchType.equals("writer")){
-			   		sql += " and m.mname = '"+searchValue+"'";
-			   	}
+	   sql +="select B.* from ";
+    sql +=" (select rownum as rnum, A.* from ";
+	   sql +=" (select m.mname,b.bno,b.btitle,";
+	   sql +="to_char(b.bdate,'yyyy-mm-dd') as bdate,bcategory ";
+	   sql +=" from board b ,mem m";
+	   sql +=" where b.mno = m.mno";
+	   if(searchValue != null && !searchValue.equals("")){
+		   	if(searchType.equals("title")){
+		   		sql +=" and b.btitle like '%"+searchValue+"%'";
+		   		sql +=" or b.bcontent like '%"+searchValue+"%'";
+		   	}else if(searchType.equals("writer")){
+		   		sql += " and m.mname = '"+searchValue+"'";
+		   	}
 		   	
 		   }
+		   sql +=" and b.bcategory = '공지사항'";
 		   sql +=" order by b.bno) A";
 		   sql +=" where rownum <= "+paging.getEnd() +") B" ;// 게시글 끝번호
 		   sql +=" where B.rnum >="+paging.getStart();
@@ -104,7 +106,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../style.css">
-    <title>나만 없어 고양이</title>
+    <title>궁금하다냥</title>
     <script src="https://kit.fontawesome.com/57da38e2a5.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -132,7 +134,7 @@
 			text-align:center;
 			margin:0 auto;
 	}
-	.list th,td{
+	.list td,td{
 		border-top:0.5px solid rgb(85, 83, 83);
 	}
     </style>
@@ -162,7 +164,7 @@
             </ul>
         </nav>
         <section >
-        <form action="totalList.jsp" method="get">
+        <form action="noticeList.jsp" method="get">
             <div class="middleBar">
                
                 <div class="bar">
@@ -180,7 +182,7 @@
              </form>
             <div class="body">
                 <div class="name">
-                    전체 게시글
+                    공지사항
                 </div>
                 <hr/>
                 <table class="list">
@@ -202,29 +204,7 @@
 					%>
 					<tr>
 						<td style="text-align: center;"><%= cg %></td>
-					<%
-					if(cg.equals("공지사항")){
-					%>
-					<td><a href="noticeDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
-					<%	
-					}else if(cg.equals("안냥")){
-					%>
-					<td><a href="helloDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
-					<%	
-					}else if(cg.equals("냥품생활")){
-					%>
-					<td><a href="buyDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
-					<%	
-					}else if(cg.equals("궁금하다냥")){
-					%>
-					<td><a href="whyDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
-					<%	
-					}else if(cg.equals("고영희씨 사진첩")){
-					%>
-					<td><a href="photoDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
-					<%
-					}
-					%>
+						<td><a href="noticeDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
 						<td style="text-align: center;"><%= writer %></td>
 						<td style="text-align: center;"><%= wdate %></td> 
 					</tr>	
@@ -240,7 +220,7 @@
                 <%
 					if(paging.getStartPage() > 1){
 				%>
-					<a href="totalList.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&lt;</a>
+					<a href="noticeList.jsp?nowPage=<%=paging.getStartPage()-1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&lt;</a>
 				<%
 					}
 				
@@ -251,7 +231,7 @@
 							<%
 						}else{
 							%>
-								<a href="totalList.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>"><%=i%></a>
+								<a href="noticeList.jsp?nowPage=<%=i%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>"><%=i%></a>
 							<%
 						}
 						
@@ -259,7 +239,7 @@
 					
 					if(paging.getEndPage() != paging.getLastPage()){
 				%>
-						<a href="totalList.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&gt;</a>
+						<a href="noticeList.jsp?nowPage=<%=paging.getEndPage()+1%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>">&gt;</a>
 				<%
 						
 					}

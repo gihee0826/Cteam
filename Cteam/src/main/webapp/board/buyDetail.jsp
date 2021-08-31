@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="project1.loginUser" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="DBmanager.PagingUtil" %>
@@ -164,7 +164,7 @@
 			text-align:center;
 			margin:0 auto;
 		}
-		input[type=submit]{
+        input[type=submit]{
             text-align: right;
             background-color: #dad8ec;
             border-radius: 6px;
@@ -282,7 +282,7 @@
             		String name = rs.getString("mname");
             		%>
                 <div class="boardName">
-                    <a href="helloList.jsp">안냥></a>
+                    <a href="buyList.jsp">냥품생활></a>
                 </div>
                 <div class="title2">
                     제목 : <%= title %>
@@ -314,7 +314,7 @@
                         댓글
                     </div>
                     <div class="comment">
-                       <table>
+                       <table class="c1">
                     	<% 
 //---------------댓글창보여줌------------------------------------------------------                    	
                     	//그 한줄만 나와야되니까 테이블 안쪽에서 선언하고 
@@ -341,13 +341,14 @@
                             <div>
                             	<input type="hidden" id="bno" name="bno" value="<%=bno%>">
                             	<!-- 이거를 넘겨줘야 comment창에서 얘를 받아서 인서트인투해줌 파라미터도 넘겨줘야함 -->
-                            	 <input type = "hidden" id = "bno" name= "type" value="hello"><!-- ★  -->
+                            	 <input type = "hidden" id = "type" name= "type" value="buy"><!-- ★  -->
                                 <textarea "text" class="commentText" name="comment"
                                 placeholder="댓글을 남겨보세요." onfocus="this.placeholder=''" onblur="this.placeholder='댓글을 남겨보세요.'"></textarea>
                             </div>
                             <div class="commentBtn">
-                                <input type="submit" value="등록">
+                                <input type="submit" onclick="no()"value="등록">
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>

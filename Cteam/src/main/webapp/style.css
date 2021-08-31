@@ -68,7 +68,7 @@ i{
 }
 .body{
     width: auto;
-    height: 800px;
+    height: auto;
     border: none;
     margin-top: 20px;
     background-color: #dad8ec;

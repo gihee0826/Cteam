@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="project1.loginUser" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="DBmanager.PagingUtil" %>
@@ -236,7 +236,7 @@
         </header>
         <nav class="menuBar">
             <ul class="menu">
-                <li><a href="noticeList.jsp">공지사항</a></li>
+                <li><a href="#">공지사항</a></li>
                 <li><a href="totalList.jsp">전체 게시글</a></li>
                 <li><a href="helloList.jsp">안냥</a></li>
                 <li><a href="whyList.jsp">궁굼하다냥</a></li>
@@ -282,7 +282,7 @@
             		String name = rs.getString("mname");
             		%>
                 <div class="boardName">
-                    <a href="helloList.jsp">안냥></a>
+                    <a href="noticeList.jsp">공지사항></a>
                 </div>
                 <div class="title2">
                     제목 : <%= title %>
@@ -341,12 +341,12 @@
                             <div>
                             	<input type="hidden" id="bno" name="bno" value="<%=bno%>">
                             	<!-- 이거를 넘겨줘야 comment창에서 얘를 받아서 인서트인투해줌 파라미터도 넘겨줘야함 -->
-                            	 <input type = "hidden" id = "bno" name= "type" value="hello"><!-- ★  -->
+                            	 <input type = "hidden" id = "type" name= "type" value="notice"><!-- ★  -->
                                 <textarea "text" class="commentText" name="comment"
                                 placeholder="댓글을 남겨보세요." onfocus="this.placeholder=''" onblur="this.placeholder='댓글을 남겨보세요.'"></textarea>
                             </div>
                             <div class="commentBtn">
-                                <input type="submit" value="등록">
+                                <input type="submit" onclick="no()"value="등록">
                             </div>
                         </div>
                     </div>

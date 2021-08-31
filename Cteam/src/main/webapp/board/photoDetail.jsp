@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="project1.loginUser" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="DBmanager.PagingUtil" %>
@@ -282,7 +282,7 @@
             		String name = rs.getString("mname");
             		%>
                 <div class="boardName">
-                    <a href="helloList.jsp">안냥></a>
+                    <a href="photoList.jsp">고영희씨 사집첩></a>
                 </div>
                 <div class="title2">
                     제목 : <%= title %>
@@ -341,12 +341,12 @@
                             <div>
                             	<input type="hidden" id="bno" name="bno" value="<%=bno%>">
                             	<!-- 이거를 넘겨줘야 comment창에서 얘를 받아서 인서트인투해줌 파라미터도 넘겨줘야함 -->
-                            	 <input type = "hidden" id = "bno" name= "type" value="hello"><!-- ★  -->
+                            	 <input type = "hidden" id = "type" name= "type" value="photo"><!-- ★  -->
                                 <textarea "text" class="commentText" name="comment"
                                 placeholder="댓글을 남겨보세요." onfocus="this.placeholder=''" onblur="this.placeholder='댓글을 남겨보세요.'"></textarea>
                             </div>
                             <div class="commentBtn">
-                                <input type="submit" value="등록">
+                                <input type="submit" onclick="no()"value="등록">
                             </div>
                         </div>
                     </div>
