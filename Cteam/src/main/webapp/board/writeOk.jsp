@@ -2,20 +2,41 @@
     pageEncoding="UTF-8"%>
 <%@page import="project1.loginUser"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import = "com.oreilly.servlet.*" %>
+<%@ page import = "com.oreilly.servlet.multipart.*" %>
 <%
 	request.setCharacterEncoding("UTF-8");
 	
 	loginUser loginUser = (loginUser)session.getAttribute("loginUser");
+	
+	MultipartRequest multi = new MultipartRequest(request, "C:/Users/gihee/git/repository/Cteam/src/main/webapp/upload", 5*1024*1024, "utf-8", new DefaultFileRenamePolicy());
 
-	String category = (String)request.getParameter("category");
-	String title = (String) request.getParameter("title");
-	String content = (String)request.getParameter("content");
-	String Img1 = (String)request.getParameter("Img1");
-	String Img2 = (String)request.getParameter("Img2");
-	String Img3 = (String)request.getParameter("Img3");
+	Enumeration files = multi.getFileNames();
+	String file1 = (String)files.nextElement();
+	String filename1 = multi.getFilesystemName(file1);
+	String file2 = (String)files.nextElement();
+	String filename2 = multi.getFilesystemName(file2);
+	String file3 = (String)files.nextElement();
+	String filename3 = multi.getFilesystemName(file3);
+
+	out.print(filename1);
+	out.print(filename2);
+	out.print(filename3);
+	
+	String category = (String)multi.getParameter("category");
+	String title = (String) multi.getParameter("title");
+	String content = (String)multi.getParameter("content");
+	String Img1 = (String)multi.getParameter("Img1");
+	String Img2 = (String)multi.getParameter("Img2");
+	String Img3 = (String)multi.getParameter("Img3");
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
+	
+	System.out.println(loginUser.getId());
+	System.out.println(loginUser.getName());
+	System.out.println(loginUser.getType());
 	
 	try{
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -28,9 +49,9 @@
 		
 		String sql = "";
 		
-		sql += "insert into board(bno,bcategory,btitle,bdate,bcontent,mno) ";
-		sql += " values(seq_board_bno.nextval,'"+category+"','"+title+"',sysdate,'"+content+"',"+loginUser.getNo()+")";
-		
+		sql += "insert into board(bno,bCategory,btitle,bdate,bcontent,Img1,Img2,Img3,mno) ";
+		//sql += "values(SEQ_BOARD_BNO.nextval,'"+category+"','"+title+"',sysdate,'"+content+",'"+filename1+"','"+filename2+",'"+filename3+"',"+loginUser.getNo()+")";
+		sql += "values(SEQ_BOARD_BNO.nextval,'"+category+"','"+title+"',sysdate,'"+content+"','"+filename1+"','"+filename2+"','"+filename3+"',"+loginUser.getNo()+")";
 		System.out.println(sql);
 		
 		psmt = conn.prepareStatement(sql);

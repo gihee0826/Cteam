@@ -85,7 +85,7 @@
 		   	
 		   }
 		   sql +=" and b.bcategory = '고영희씨 사진첩'";
-		   sql +=" order by b.bno) A";
+		   sql +=" order by b.bno desc) A";
 		   sql +=" where rownum <= "+paging.getEnd() +") B" ;// 게시글 끝번호
 		   sql +=" where B.rnum >="+paging.getStart();
 	

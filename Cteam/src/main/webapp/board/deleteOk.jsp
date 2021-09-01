@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
+<%@ page import="project1.loginUser" %> 
+<%@ page import="DBmanager.DBManager" %>
 <%
+
+	request.setCharacterEncoding("UTF-8");
+
+	loginUser loginUser = (loginUser)session.getAttribute("loginUser");
+
 	String bno =(String)request.getParameter("bno");
+	String category = (String)request.getParameter("category");
 	
 	if(bno == null){
 		bno = "";
@@ -34,6 +42,16 @@
 		conn.close();
 		psmt.close();
 	}
-
-	response.sendRedirect("/Cteam/board/list.jsp");
+	
+	
+	// 삭제 후 해당 리스트로 이동할 수 있게 조건문을 걸어둠
+	if(category.equals("안냥")){
+		response.sendRedirect("helloList.jsp");
+	 	}else if(category.equals("궁금하다냥")){
+		response.sendRedirect("whyList.jsp");
+	 	}else if(category.equals("냥품생활")){
+		response.sendRedirect("buyList.jsp");
+	 	}else if(category.equals("고영희씨 사진첩")){
+		response.sendRedirect("photoList.jsp");
+	 	}
 %>

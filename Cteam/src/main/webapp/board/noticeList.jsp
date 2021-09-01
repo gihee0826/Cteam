@@ -85,7 +85,7 @@
 		   	
 		   }
 		   sql +=" and b.bcategory = '공지사항'";
-		   sql +=" order by b.bno) A";
+		   sql +=" order by b.bno desc) A";
 		   sql +=" where rownum <= "+paging.getEnd() +") B" ;// 게시글 끝번호
 		   sql +=" where B.rnum >="+paging.getStart();
 	
@@ -120,6 +120,21 @@
 				alert("접근권한이 없습니다.");
 			}
 		}
+		
+		//--------------------------비회원디테일노노--------------------------------
+		
+		function go(bno,searchType,searchValue,nowPageStr){
+				//그냥 매게변수이름만 넣어주면 됨 따로 선언 필요없음
+			var login = '<%=loginUser%>';
+			
+			if(login != 'null'){
+				location.href='noticeDetail.jsp?bno='+bno+'&searchType='+searchType+'&searchValue='+searchValue+'&nowPageStr='+nowPageStr;
+				//항상 구문정확히 적기
+			}else{
+				alert("로그인 후에 이용 가능한 서비스입니다!");
+			}	
+		}
+		//--------------------------------------------------------------------
 	</script>
     <style>
     a:hover{
@@ -204,7 +219,9 @@
 					%>
 					<tr>
 						<td style="text-align: center;"><%= cg %></td>
-						<td><a href="noticeDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>&nowPage=<%=nowPageStr%>"><%= title %></a></td>
+						<!-- =============================비회원======================================================= -->
+						<td class="nope"><a href="javascript:go(<%=bno%>,'<%=searchType%>','<%=searchValue%>','<%=nowPageStr%>');"><%= title %></a></td>
+											<!-- href를 눌렀을 때 자바스크립트 실행되게 하고 각 로우가 가지고 있는 파라미터들을 넘겨줘야함. -->
 						<td style="text-align: center;"><%= writer %></td>
 						<td style="text-align: center;"><%= wdate %></td> 
 					</tr>	

@@ -102,14 +102,14 @@
                 <input type="text" name="id" placeholder="이메일 계정" onfocus="this.placeholder=''" onblur="this.placeholder='이메일 계정'">
         </div>
         <div class="emailSearch">
-                <a href="" style="color: rgb(85, 83, 83)">이메일을 잊으셨나요? </a>
+               <!--   <a href="" style="color: rgb(85, 83, 83)">이메일을 잊으셨나요? </a>-->
         </div>
         <br>
         <div class="password">
             <input type="password" name="password" placeholder="비밀번호" onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호'">
         </div>
         <div class="passwordSearch">
-            <a href="" style="color: rgb(85, 83, 83)">비밀번호를 잊으셨나요? </a>
+            <!--  <a href="" style="color: rgb(85, 83, 83)">비밀번호를 잊으셨나요? </a>-->
         </div>
         
         <div class="userbar">

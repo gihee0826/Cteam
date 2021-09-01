@@ -282,8 +282,10 @@
             </div>
             <div class="body">
                 <div class="m1">
+                <!-- 카테고리 선택 후 게시글 수정하면 해당 카테고리로 변경 됨 -->
                     <select name="category" class="board" >
                         <option value="안냥"<%if(category.equals("안냥")){%>selected<%} %>>안냥</option>
+                        <!-- value를 설정하고 고른 카테고리가 해당 value일때 해당 게시판에 저장 -->
                         <option value="궁금하다냥"<%if(category.equals("궁금하다냥")){%>selected<%} %>>궁금하다냥</option>
                         <option value="냥품생활"<%if(category.equals("냥품생활")){%>selected<%} %>>냥품생활</option>
                         <option value="고영희씨 사진첩"<%if(category.equals("고영희씨 사진첩")){%>selected<%} %>>고영희씨 사진첩</option>

@@ -111,7 +111,20 @@
             margin-left: auto;
             margin-right: auto;
             position: relative;
-            top: 30px;
+            top: 20px;
+
+        }
+        .youtube2{
+            width: 600px;
+            height: 350px;
+            background-color: #f4d4d4;
+            text-align: center;
+            justify-self: center;
+            margin-top:20px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            top: 20px;
 
         }
         .vod{
@@ -139,12 +152,12 @@
 			width:80px;
 			height:30px;
 			text-align:center;
-			margin:0 auto;
+			margin:20px auto;
 		}
     </style>
 </head>
 <body>
-	<
+	
     <div class="mainBox">
     	<div class="user bar">
                     <%if(loginUser == null){ %>
@@ -184,60 +197,13 @@
                 </div>
             </div>
             <div class="body">
+            <!-- 유튜브 영상 넣는 부분 -->
                 <div class="youtube">
                     <iframe class="vod"width="560" height="315" src="https://www.youtube.com/embed/U6gXFcywFug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <div class="board">
-                    <div class="total">
-                        <div class="t_title">
-                            궁금하다냥
-                        </div>
-                        <table>
-                        	<tr>
-		                        <th>제목</th>
-		                        <th>작성자</th>
-                        	</tr>
-                        	<%
-							while(rs.next()){
-								String title = rs.getString("btitle");
-								String writer = rs.getString("mname");
-								
-							%>
-                        	<tr>
-								<td><%= title %></td>
-								<td><%= writer %></td>
-							</tr>	
-							<%
-						}		
-					%>
-                        </table>
-                    </div>
-                    <div class="notice">
-                        <div class="n_title">
-                            안냥
-                         </div>
-                         <table>
-                        	<tr>
-		                        <th>제목</th>
-		                        <th>작성자</th>
-                        	</tr>
-                        	<%
-							//int count =1;
-							while(rs2.next()){
-								String title = rs2.getString("btitle");
-								String writer = rs2.getString("mname");								
-							%>
-                        	<tr>							
-								<td><a href="board/helloDetail.jsp?bno=<%= bno%>&searchType=<%=searchType%>&searchValue=<%=searchValue%>"><%= title %></a></td>
-								<td><%= writer %></td>							
-							</tr>	
-							<%									
-						}						
-					%>
-                        </table>
-                    </div>
+                <div class="youtube2">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/wb-UBFYb3_I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
-                <hr>
                 <footer>
 					<div class="footerC">
 					&copy;TeamC

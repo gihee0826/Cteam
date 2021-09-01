@@ -47,6 +47,7 @@
 		   		totalSql += " and m.mname = '"+searchValue+"'";
 		   	}
 	   }
+	   		totalSql += " order by b.bdate desc";
 	   
 	psmt = conn.prepareStatement(totalSql);
 	rs = psmt.executeQuery();
@@ -83,7 +84,7 @@
 			   	}
 		   	
 		   }
-		   sql +=" order by b.bno) A";
+		   sql +=" order by b.bno desc) A";
 		   sql +=" where rownum <= "+paging.getEnd() +") B" ;// 게시글 끝번호
 		   sql +=" where B.rnum >="+paging.getStart();
 	
@@ -200,6 +201,7 @@
 							String writer = rs.getString("mname");
 							String cg = rs.getString("bcategory");
 					%>
+					<!-- 전체게시판에서 글을 클릭하면 해당 게시판 디테일로 이동할 수 있도록 조건물 걸어둠 -->
 					<tr>
 						<td style="text-align: center;"><%= cg %></td>
 					<%

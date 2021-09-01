@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <title>Document</title>
     <script>
+    //유효성 검사 : text창에서 마우스가 바깥을 눌렀을 때 그때의 유효성검사
         function checkFn(type){
 				if(type == 'id'){
 					var checkId = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/g;
@@ -31,7 +32,7 @@
 						span.style.display = "none";
 					}
 				}else if(type == 'pass'){
-					var checkId = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+					var checkPass = /^.*(?=^.{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 					var value = document.frm.password.value;
 					var span = document.getElementsByClassName("passwordT")[0].getElementsByTagName("span")[0];
 					if(value == ""){
@@ -64,12 +65,12 @@
 					}
 				}
             }
-
+		//만들기버튼을 눌렀을때 유효성검사하는거
             function sumbitFn(){
 				var result = true;
 				var checkId = /^[a-z]+[a-z0-9]{5,15}/g;
 				var value = document.frm.id.value;
-				var span = document.getElementsByClassName("id")[0].getElementsByTagName("span")[0];
+				var span = document.getElementsByClassName("idT")[0].getElementsByTagName("span")[0];
 				if(value == ""){
 					span.textContent = "*필수";
 					span.style.color = "red";
@@ -86,9 +87,9 @@
 				}
 				
 				
-				var checkPass = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+				var checkPass = /^.*(?=^.{4,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 				value = document.frm.password.value;
-				span = document.getElementsByClassName("password")[0].getElementsByTagName("span")[0];
+				span = document.getElementsByClassName("passwordT")[0].getElementsByTagName("span")[0];
 				if(value == ""){
 					span.textContent = "*필수";
 					span.style.color = "red";
@@ -106,7 +107,7 @@
 
                 var checkName = /^[가-힣]/g;
 				value = document.frm.name.value;
-				span = document.getElementsByClassName("name")[0].getElementsByTagName("span")[0];
+				span = document.getElementsByClassName("nameT")[0].getElementsByTagName("span")[0];
 				if(value == ""){
 					span.textContent = "*필수";
 					span.style.color = "red";
@@ -120,6 +121,9 @@
 				}else{
 					span.textContent = "";
 					span.style.display = "none";
+				}
+				if(result){
+					document.frm.submit();
 				}
             }
     </script>
@@ -162,9 +166,9 @@
             
         }
         .passwordN{
-            width: 80px;
+            width: 350px;
             height: 30px;
-            margin-left: 10px;
+            margin-left: 0px;
             text-align: center;
         }
         .impor{
@@ -209,7 +213,7 @@
     </style>
 </head>
 <body>
-    <form name="frm" action="joinOk.jsp" method="post">
+    <form name="frm" action="joinOk.jsp" method="post" onsubmit="return false;">
     <nav class="joinBox">
         <div class="logo">
             <a href="" class="logoI" style="color: rgb(85, 83, 83);">
@@ -231,7 +235,7 @@
             </div>
         <br>
             <div class="passwordN">
-                <label for="password">비밀번호<span class="red">*</span></label>
+                <label for="password">비밀번호(4~15자리/영어,숫자,특수문자 사용)<span class="red">*</span></label>
             </div>
             <div class="passwordT">
                 <input type="password" class="impor" name="password" id="password" placeholder="비밀번호를 입력하세요." onblur="checkFn('pass')">
@@ -250,7 +254,7 @@
         
         <div class="userbar">
             <div class="loginBtn">
-                <input type="submit" value="만들기">
+                <input type="submit" onclick="sumbitFn()" value="만들기">
             </div>   
         </div>
     </nav>

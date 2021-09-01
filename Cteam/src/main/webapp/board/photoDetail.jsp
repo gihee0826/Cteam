@@ -13,7 +13,7 @@
 
 	String bnoStr = (String)request.getParameter("bno");
 	String mno = (String)request.getParameter("mno");
-	String imgPath = "\\Cafe\\img\\";
+	String imgPath = "/Cteam/upload/";
 	
 	
 		int bno =0;
@@ -25,6 +25,7 @@
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		ResultSet rs2 = null;
+		String category ="";
 	
 	try{
 		conn = DBManager.getConnection();//																							 이너조인 조건 멤버의 = 보드의 fk키같고 그리고 				
@@ -36,6 +37,8 @@
 		rs = psmt.executeQuery();
 		
 		rs.next();
+		
+		category =rs.getString("bcategory");
 		
 		//댓글 창 보여주기 위한 쿼리 다시 날리기
 		String csql="select cno,ccontent,to_char(cdate,'yyyy-mm-dd')as cdate,bno,mem.mno,mname from reply,mem where reply.mno=mem.mno and bno="+bno;
@@ -60,11 +63,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <script>
-	function delFn(){
-		var yn = confirm("삭제하시겠습니까?");
-		if(yn){
-			location.href="delectOk.jsp?bno=<%=bno%>";
-		}
+    function delFn(){
+		if('<%=mno%>'=='<%=loginUser.getNo()%>' || '<%=loginUser.getNo()%>'== 1){
+			var yn = confirm("삭제하시겠습니까?");
+			if(yn){
+				location.href="deleteOk.jsp?bno=<%=bno%>&category=<%=category%>";
+				//원래는 bno만 넘기는 것이 맞지만, 카테고리별로 나눠져야 하기 때문에 카테고리도 같이 넘겨야함
+			}
+		}else{
+			alert("해당 글을 삭제할수 없습니다.");
+		}	
 	}
 
 	//--비회원은 댓글 달 수 없음-----------------------------------------------------
@@ -72,7 +80,7 @@
 		var login = '<%=loginUser%>';
 		if(login == 'null'){
 			alert("로그인이 필요한 서비스 입니다!");
-			location.href="login.jsp";
+			location.href="/Cteam/login/login.jsp";
 		}else{
 			document.cf.submit();
 			//나의 웹문서 폼태그 이름의 서브밋을 시켜라 esle니까 로그인이 되있을 경우에
@@ -273,7 +281,6 @@
             <div class="body">
             	<%
             		String title = rs.getString("btitle");
-            		String category = rs.getString("bcategory");
             		String date = rs.getString("bdate");
             		String content = rs.getString("bcontent");
             		String img1 = rs.getString("img1");
@@ -301,7 +308,15 @@
 						</tr>
 						<tr>
 							<td class="m3"><%= content %><br>
-							<img src="<%=imgPath+img1%>" alt=""><br><img src="<%=imgPath+img2%>" alt=""><br><img src="<%=imgPath+img3%>" alt=""><br>
+							<%if(img1 != null &&!img1.equals("null")){ %>
+							<img src="<%=imgPath+img1%>"><br>
+							<%}
+							if(img2 != null && !img2.equals("null")){
+							%><img src="<%=imgPath+img2%>"><br>
+							<%}
+							if(img3 != null && !img3.equals("null")){
+							%><img src="<%=imgPath+img3%>" ><br>
+							<%} %>
 							</td>
 						</tr>
 						</table>
@@ -314,7 +329,7 @@
                         댓글
                     </div>
                     <div class="comment">
-                       <table>
+                       <table class="c1">
                     	<% 
 //---------------댓글창보여줌------------------------------------------------------                    	
                     	//그 한줄만 나와야되니까 테이블 안쪽에서 선언하고 
@@ -324,7 +339,9 @@
                     			String cname = rs2.getString("mname");                   		
                     	%>                   	
                     		<tr>
-                    			<td class="cn"><%=cname %></td>
+                    			<td class="cn"><%=cname %> </td>
+                    		</tr>
+                    		<tr>
                     			<td><%=ccontent %></td>
                     			<td class="cd"><%=cdate %></td>
                     		</tr>
@@ -346,7 +363,7 @@
                                 placeholder="댓글을 남겨보세요." onfocus="this.placeholder=''" onblur="this.placeholder='댓글을 남겨보세요.'"></textarea>
                             </div>
                             <div class="commentBtn">
-                                <input type="submit" onclick="no()"value="등록">
+                                <input type="submit" onclick="no();return false;"value="등록">
                             </div>
                         </div>
                     </div>

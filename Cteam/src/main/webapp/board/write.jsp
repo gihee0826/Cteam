@@ -187,7 +187,7 @@
    	    </script>
 </head>
 <body>
-	<form action="writeOk.jsp" method="post">
+	<form action="writeOk.jsp" method="post" enctype="multipart/form-data">
     <div class="mainBox">
         <div class="user bar">
             <%if(loginUser == null){ %>

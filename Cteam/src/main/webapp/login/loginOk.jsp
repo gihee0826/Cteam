@@ -34,6 +34,7 @@
 			loginUser.setNo(rs.getInt("mno"));
 			loginUser.setName(rs.getString("mname"));
 			loginUser.setId(rs.getString("mid"));
+			loginUser.setType(rs.getString("adminyn"));
 			
 			session.setAttribute("loginUser", loginUser);
 			
@@ -41,7 +42,7 @@
 			psmt.close();
 			rs.close();
 			
-			response.sendRedirect("../index.jsp");
+			response.sendRedirect("/Cteam");
 			
 		}else{
 			System.out.println("회원이 존재하지 않습니다.");
@@ -58,6 +59,6 @@
 		
 		
 	}catch(Exception e){
-		
+		e.printStackTrace();	
 	}
 %>
