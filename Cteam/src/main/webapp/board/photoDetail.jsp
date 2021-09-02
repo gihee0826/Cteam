@@ -268,9 +268,10 @@
                 </div>
             </div>
             <div class="footbar">
-                <div class="modify">
+                <!--  <div class="modify">
                     <input type="button" onclick="location.href='modify.jsp?bno=<%=bno%>'"value="수정">
                 </div>
+                -->
                 <div class="delete">
                     <input type="button" onclick="delFn()" value="삭제">
                 </div>
@@ -296,7 +297,7 @@
                 </div>
                 <div class="writer">
                     <i class="far fa-user"></i>
-                    작성자
+                    작성자 : <%=name %>
                 </div>
                 <hr>
             	 <table class="m1">

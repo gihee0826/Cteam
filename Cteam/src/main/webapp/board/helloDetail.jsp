@@ -66,6 +66,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <script>
     //글작성자의 회원 번호와 현재 로그인한 회원의 번호가 같을때는 삭제하시겠습니까?를 띄우고 아닐경우에는 삭제할수 없습니다.를 띄운다
+    		//로그인유저를 지정할때 문자로 하면 .equals사용
 	function delFn(){
 		if('<%=mno%>'=='<%=loginUser.getNo()%>' || '<%=loginUser.getNo()%>'== 1){
 			var yn = confirm("삭제하시겠습니까?");
@@ -299,7 +300,7 @@
                 </div>
                 <div class="writer">
                     <i class="far fa-user"></i>
-                    작성자
+                    작성자 : <%=name %>
                 </div>
                 <hr>
             	 <table class="m1">

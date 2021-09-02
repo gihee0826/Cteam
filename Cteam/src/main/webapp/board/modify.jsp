@@ -4,6 +4,8 @@
 <%@ page import="project1.loginUser" %>
 <%
 	loginUser loginUser = (loginUser)session.getAttribute("loginUser");
+
+String imgPath = "/Cteam/upload/";
 %>
 <%
 	String bnoStr = (String)request.getParameter("bno");
@@ -21,9 +23,9 @@
 	int mno = 0; 
 	String date = "";
 	String content = "";
-	String Img1 = "";
-	String Img2 = "";
-	String Img3 = "";
+	String img1 = "";
+	String img2 = "";
+	String img3 = "";
 	
 	
 	try{
@@ -49,9 +51,9 @@
 			mno = rs.getInt("mno");
 			date = rs.getString("bdate");
 			content = rs.getString("bcontent");
-			Img1 = rs.getString("img1");
-			Img2 = rs.getString("img2");
-			Img3 = rs.getString("img3");
+			img1 = rs.getString("img1");
+			img2 = rs.getString("img2");
+			img3 = rs.getString("img3");
 		}
 		
 		
@@ -76,17 +78,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <!-- <script>
-		function outfn(){
-			alert("글 수정을 하지않고 나가시겠습니까?")
-			if(login != 'null'){
-				location.href="board/write.jsp";
-			}else{
-				alert("접근권한이 없습니다.");
-			}
+    <script>
+		function imgdel() {
+			//삭제버튼을 누르면 사진 3개가 전부 삭제
+			var imgDelete = document.getElementById("m3img");
+			imgDelete.remove();
 		}
 	</script>
-	-->
+	
     <style>
         .boardName{
             font-size: 14px;
@@ -96,7 +95,6 @@
         .title{
             margin-top: 5px;
             margin-left: 30px;
-            font-size: 26px;
 
         }
         .writer{
@@ -229,6 +227,20 @@
 			text-align:center;
 			margin:0 auto;
 		}
+		.m4,
+        .m5,
+        .m6{
+        	margin-top:10px;
+        	margin-left:30px;
+        }
+        .m3img{
+            margin-left: 50px;
+            margin-top: 16px;
+        }
+        .delBtn{
+        	margin-left: 200px;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -295,11 +307,39 @@
                     <input type="text" name="title" class="m22" value="<%= title %>"> 
                 </div>
                 <div class="m3">
-                    <textarea name="content" id="m3" cols="122" rows="30"><%= content %></textarea>
+                    <textarea name="content" id="m3" cols="122" rows="30"><%= content %>
+                    
+                    </textarea>
+                    
                 </div>
+                <div id="m3img" class="m3img">
+                	 <%if(img1 != null &&!img1.equals("null")){ %>
+							<img src="<%=imgPath+img1%>" width='200' height='150'><br>
+							<%}
+							if(img2 != null && !img2.equals("null")){
+							%><img src="<%=imgPath+img2%>" width='200' height='150'><br>
+							<%}
+							if(img3 != null && !img3.equals("null")){
+							%><img src="<%=imgPath+img3%>" width='200' height='150'><br>
+							<%} %>
+					<!--  <input type="button" class="delBtn" value="삭제" onclick="imgdel()">-->
+                </div>
+              
+               <!-- 
                 <div class="m4">
-                    <input type="file" class="m42"name="fileName">
+                    <input type="file" name="uploadFile1" class="commentText" size=120 maxlength=500">
                 </div>
+                <div class="m5">
+		            <input type="file" name="uploadFile2" class="commentText" size=120 maxlength=500">
+		        </div>
+		        <div class="m6">
+		            <input type="file" name="uploadFile3" class="commentText" size=120 maxlength=500">
+                </div>
+                <div class="uploadResult">
+		             <ul>
+		             </ul>
+		        </div>
+		         -->
                 <div>
                 	<input type="submit" value="등록">
                 </div>

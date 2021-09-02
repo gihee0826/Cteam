@@ -154,6 +154,17 @@
 			text-align:center;
 			margin:20px auto;
 		}
+		.today{
+			width:310px;
+			height:30px;
+		 	position: relative;
+            top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom:10px;
+            font-size:30px;
+            
+		}
     </style>
 </head>
 <body>
@@ -197,6 +208,10 @@
                 </div>
             </div>
             <div class="body">
+            	<div class=today>
+            		Today's Best Video
+            		<i class="fas fa-video"></i>
+            	</div>
             <!-- 유튜브 영상 넣는 부분 -->
                 <div class="youtube">
                     <iframe class="vod"width="560" height="315" src="https://www.youtube.com/embed/U6gXFcywFug" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

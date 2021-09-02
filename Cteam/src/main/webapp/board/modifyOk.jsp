@@ -54,7 +54,15 @@
 	}
 	
 	
-	response.sendRedirect("/Cteam/board/totalList.jsp");
+	if(category.equals("안냥")){
+		response.sendRedirect("helloList.jsp");
+	 	}else if(category.equals("궁금하다냥")){
+		response.sendRedirect("whyList.jsp");
+	 	}else if(category.equals("냥품생활")){
+		response.sendRedirect("buyList.jsp");
+	 	}else if(category.equals("고영희씨 사진첩")){
+		response.sendRedirect("photoList.jsp");
+	 	}
 	
 	
 	

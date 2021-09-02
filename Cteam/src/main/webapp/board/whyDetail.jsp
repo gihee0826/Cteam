@@ -296,7 +296,7 @@
                 </div>
                 <div class="writer">
                     <i class="far fa-user"></i>
-                    작성자
+                    작성자 : <%=name %>
                 </div>
                 <hr>
             	 <table class="m1">

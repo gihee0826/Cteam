@@ -27,7 +27,6 @@
         .title{
             margin-top: 5px;
             margin-left: 30px;
-            font-size: 26px;
 
         }
         .writer{
