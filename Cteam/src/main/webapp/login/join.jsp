@@ -48,14 +48,16 @@
 						span.style.display = "none";
 					}
 				}else if(type == 'name'){
-					var checkName = /^[가-힣]/g;
+					
+					var checkName = /[a-zA-Zㄱ-ㅎ]/g;
 					var value = document.frm.name.value;
 					var span = document.getElementsByClassName("nameT")[0].getElementsByTagName("span")[0];
+					var result = checkName.test(value);
 					if(value == ""){
 						span.textContent = "*필수";
 						span.style.color = "red";
 						span.style.display = "inline";
-					}else if(!checkName.test(value)){
+					}else if(result){
 						span.textContent = "*형식오류";
 						span.style.color = "red";
 						span.style.display = "inline";

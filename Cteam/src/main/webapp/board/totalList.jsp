@@ -77,8 +77,8 @@
 		   sql +=" where b.mno = m.mno";
 		   if(searchValue != null && !searchValue.equals("")){
 			   	if(searchType.equals("title")){
-			   		sql +=" and b.btitle like '%"+searchValue+"%'";
-			   		sql +=" or b.bcontent like '%"+searchValue+"%'";
+			   		sql +=" and (b.btitle like '%"+searchValue+"%'";
+			   		sql +=" or b.bcontent like '%"+searchValue+"%')";
 			   	}else if(searchType.equals("writer")){
 			   		sql += " and m.mname = '"+searchValue+"'";
 			   	}
